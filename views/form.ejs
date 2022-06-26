@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Form</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			h1 {
+				text-align: center;
+				padding: 3rem;
+			}
+
+			form {
+				width: 500px;
+				margin: 0 auto;
+
+				display: flex;
+				flex-direction: column;
+				border: 1px solid black;
+				padding: 2rem;
+			}
+			label {
+				margin: 0.4rem 0;
+			}
+			input {
+				height: 1.8rem;
+				text-indent: 0.4rem;
+			}
+			button {
+				margin: 0.7rem 0 0 0;
+				padding: 0.4rem;
+				color: white;
+				background: #32a854;
+			}
+		</style>
+	</head>
+	<body>
+		<h1><%= title %> the data</h1>
+		<div class="form">
+			<form method="POST" id="form">
+				<label for="name">Name:</label>
+				<input
+					type="text"
+					name="name"
+					id="name"
+					placeholder="Enter name"
+					value="<%= result.name%>"
+					autocomplete="off"
+				/>
+				<label for="age">Age:</label>
+				<input
+					type="text"
+					name="age"
+					id="age"
+					placeholder="Enter age"
+					value="<%= result.age%>"
+					autocomplete="off"
+				/>
+				<label for="course">Course:</label>
+				<input
+					type="text"
+					name="course"
+					id="course"
+					autocomplete="off"
+					placeholder="Enter course"
+					value="<%= result.course%>"
+				/>
+
+				<label for="email">Email:</label>
+				<input
+					type="email"
+					name="email"
+					id="email"
+					placeholder="Enter email"
+					value="<%= result.email%>"
+					autocomplete="off"
+				/>
+				<button id="submitbtn">Submit</button>
+			</form>
+		</div>
+		<script>
+			const btn = document.querySelector("#submitbtn");
+
+			function isnumeric(val) {
+				return !/^\d+$/.test(val);
+			}
+			function alertmsg(msg, color, duration) {
+				var el = document.createElement("div");
+				el.setAttribute(
+					"style",
+					"position:absolute;top:0;left:50%;transform:translate(-50%,0); background-color:" +
+						color +
+						";color:white;padding:1rem;",
+				);
+				console.log(color);
+				el.innerHTML = msg;
+				setTimeout(() => {
+					el.parentNode.removeChild(el);
+				}, duration);
+				document.body.appendChild(el);
+			}
+			btn.addEventListener("click", (e) => {
+				e.preventDefault();
+				const form = document.querySelector("#form");
+				const name = document.querySelector("#name").value;
+				const age = document.querySelector("#age").value;
+				const course = document.querySelector("#course").value;
+				const email = document.querySelector("#email").value;
+
+				if (name == "") return alertmsg("Name must be added", "red", 1000);
+				else if (age == "") return alertmsg("age must be added", "red", 1000);
+				else if (course == "")
+					return alertmsg("course must be added", "red", 1000);
+				else if (email == "")
+					return alertmsg("email must be added", "red", 1000);
+				else if (isnumeric(age))
+					return alertmsg("age must be number", "red", 1000);
+				else {
+					alertmsg("data inserted Successfully", "green", 1000);
+					form.submit();
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "major-project",
+  "version": "1.0.0",
+  "description": "Insert data using form into database",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Vijay",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

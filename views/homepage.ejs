@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Student Data</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+			h1 {
+				text-align: center;
+				padding: 3rem;
+				text-transform: uppercase;
+				letter-spacing: 0.6rem;
+			}
+			.table {
+				margin: 0 10rem;
+			}
+			.new-data {
+				display: flex;
+				flex-direction: row-reverse;
+				margin: 1rem 2rem 1rem 0;
+			}
+			.new-data button {
+				background: #32a854;
+				padding: 0.6rem;
+				border-radius: 0.3rem;
+				color: #fff;
+				cursor: pointer;
+			}
+			.new-data button span {
+				margin-right: 0.3rem;
+			}
+
+			.data table {
+				width: 100%;
+			}
+			tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+			tr {
+				height: 2.4rem;
+			}
+			td,
+			th:not(:last-child) {
+				border-right: 1px solid black;
+			}
+			tr:not(:last-child) {
+				border-bottom: 1px solid black;
+			}
+			th {
+				border-bottom: 2px solid black;
+			}
+
+			td {
+				text-align: center;
+			}
+			.deletedata {
+				background: red;
+				color: white;
+			}
+			.editdata {
+				color: black;
+				background: #03e3fc;
+			}
+			.editdata,
+			.deletedata {
+				padding: 0.3rem 0.5rem;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Student Data</h1>
+		<div class="table">
+			<div class="new-data">
+				<a href="/form">
+					<button class="newdata"><span>+</span>Add Student</button></a
+				>
+			</div>
+			<div class="data">
+				<table>
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Course</th>
+						<th>Email</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					<% result.forEach(data=>{ %>
+					<tr>
+						<td><%= data.name %></td>
+						<td><%= data.age%></td>
+						<td><%= data.course %></td>
+						<td><%= data.email %></td>
+						<td><a href="/updateform/<%= data.id%>"><button class="editdata">Edit</button></a></td>
+						<td><a href="/deleteform/<%= data.id%>"><button class="deletedata">Delete</button></a></td>
+					</tr>
+
+					<% }) %>
+					
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
